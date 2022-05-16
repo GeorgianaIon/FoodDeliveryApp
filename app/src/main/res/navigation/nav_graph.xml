@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
     app:startDestination="@id/loginRegisterFragment">
 
@@ -27,5 +26,13 @@
     <fragment
         android:id="@+id/cartFragment"
         android:name="com.example.fooddeliveryapp.views.CartFragment"
-        android:label="Your Cart" />
+        android:label="Your Cart" >
+        <action
+            android:id="@+id/action_cartFragment_to_addressFragment"
+            app:destination="@id/addressFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addressFragment"
+        android:name="com.example.fooddeliveryapp.views.AddressFragment"
+        android:label="AddressFragment" />
 </navigation>

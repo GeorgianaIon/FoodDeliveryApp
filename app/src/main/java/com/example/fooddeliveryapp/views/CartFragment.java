@@ -14,6 +14,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -46,7 +47,7 @@ public class CartFragment extends Fragment {
         order = view.findViewById(R.id.placeOrder);
         total = view.findViewById(R.id.total);
 
-        order.setOnClickListener(order -> Toast.makeText(getActivity(), "Order placed successfully", Toast.LENGTH_SHORT).show());
+        order.setOnClickListener(order ->  Navigation.findNavController( getView()).navigate(R.id.action_cartFragment_to_addressFragment));
 
         viewModel.getTotalPrice().observe(getViewLifecycleOwner(), integer -> cartBill.setText("Cart total: " + integer + "dkk"));
 

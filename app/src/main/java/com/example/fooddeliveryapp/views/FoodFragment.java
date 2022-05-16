@@ -33,7 +33,7 @@ public class FoodFragment extends Fragment {
     private TextView loggedInUser;
     private Button logOutButton;
     private RecyclerView recyclerView;
-    List<Food> foods;
+    private List<Food> foods;
     private FoodViewModel viewModel;
 
     public FoodFragment(){
