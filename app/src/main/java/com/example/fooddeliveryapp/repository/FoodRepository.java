@@ -1,4 +1,4 @@
-package com.example.fooddeliveryapp.model;
+package com.example.fooddeliveryapp.repository;
 
 import android.util.Log;
 
@@ -6,13 +6,10 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
+import com.example.fooddeliveryapp.model.Food;
+import com.example.fooddeliveryapp.model.FoodResponse;
 import com.example.fooddeliveryapp.service.ServiceGenerator;
 import com.example.fooddeliveryapp.service.SpoonacularAPI;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,15 +17,13 @@ import java.util.List;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.internal.EverythingIsNonNull;
 
 public class FoodRepository {
 
     private  MutableLiveData<List<Food>> selectedFood;
     private MutableLiveData<List<Food>> foodList;
     private static FoodRepository instance;
-    private DatabaseReference databaseReference;
-    private FirebaseDatabase firebaseDatabase;
+    private MutableLiveData<Integer> totalCart;
     private MutableLiveData<Integer> totalPrice;
 
     public FoodRepository(){
@@ -36,8 +31,7 @@ public class FoodRepository {
         List<Food> newList = new ArrayList<>();
         selectedFood.setValue(newList);
         foodList = new MutableLiveData<>();
-        firebaseDatabase = FirebaseDatabase.getInstance();
-        databaseReference = firebaseDatabase.getReference();
+        totalCart = new MutableLiveData<>();
         totalPrice = new MutableLiveData<>();
      }
 
@@ -59,34 +53,8 @@ public class FoodRepository {
     public void setFoodList(List<Food> foodList) {
         selectedFood.setValue(foodList);
         calculateCartValue();
+        calculateTotal();
     }
-
-//    public void insert(Food food) {
-//        List<Food> currentFood = selectedFood.getValue();
-//        for(Food food1 : currentFood)
-//        {
-//            if(food1.equals(food)){
-//                food1.setAmount(food1.getAmount()+1);
-//            }
-//
-//        }
-//        currentFood.add(food);
-//        selectedFood.setValue(currentFood);
-////        calculateCartValue();
-//    }
-//
-//    public void deleteFood(Food food) {
-//        List<Food> currentFood = selectedFood.getValue();
-//        for(Food food1 : currentFood)
-//        {
-//            if(food1.equals(food)){
-//                food1.setAmount(food1.getAmount()+1);
-//            }
-//        }
-//        currentFood.remove(food);
-//        selectedFood.setValue(currentFood);
-////        calculateCartValue();
-//    }
 
     private void calculateCartValue(){
         if(selectedFood.getValue() == null) return;
@@ -95,10 +63,23 @@ public class FoodRepository {
         for(Food food : cartItems){
             total += food.getPrice() * food.getAmount();
         }
-        totalPrice.setValue(total);
+        totalCart.setValue(total);
     }
 
     public LiveData<Integer> getTotalPrice() {
+        if(totalCart.getValue() == null){
+            totalCart.setValue(0);
+        }
+        return totalCart;
+    }
+
+    private void calculateTotal(){
+        if(selectedFood.getValue() == null) return;
+        int total = totalCart.getValue() + 25;
+        totalPrice.setValue(total);
+    }
+
+    public LiveData<Integer> getTotal() {
         if(totalPrice.getValue() == null){
             totalPrice.setValue(0);
         }
@@ -126,5 +107,4 @@ public class FoodRepository {
             }
         });
     }
-
 }

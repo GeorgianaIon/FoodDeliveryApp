@@ -33,6 +33,7 @@ public class CartFragment extends Fragment {
     private CartViewModel viewModel;
     private TextView cartBill;
     private Button order;
+    private TextView total;
 
     @Nullable
     @Override
@@ -43,12 +44,13 @@ public class CartFragment extends Fragment {
 
         cartBill = view.findViewById(R.id.cartTotal);
         order = view.findViewById(R.id.placeOrder);
+        total = view.findViewById(R.id.total);
 
-        order.setOnClickListener(order -> {
-            Toast.makeText(getActivity(), "Order placed successfully", Toast.LENGTH_SHORT).show();
-        });
+        order.setOnClickListener(order -> Toast.makeText(getActivity(), "Order placed successfully", Toast.LENGTH_SHORT).show());
 
         viewModel.getTotalPrice().observe(getViewLifecycleOwner(), integer -> cartBill.setText("Cart total: " + integer + "dkk"));
+
+        viewModel.getTotal().observe(getViewLifecycleOwner(), totalTotal -> total.setText("Total of " + totalTotal + "dkk"));
 
         recyclerView = view.findViewById(R.id.rv);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));

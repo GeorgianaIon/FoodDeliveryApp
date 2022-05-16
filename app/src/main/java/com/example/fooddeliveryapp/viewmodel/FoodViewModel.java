@@ -7,9 +7,9 @@ import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
-import com.example.fooddeliveryapp.model.AppRepository;
+import com.example.fooddeliveryapp.repository.AppRepository;
 import com.example.fooddeliveryapp.model.Food;
-import com.example.fooddeliveryapp.model.FoodRepository;
+import com.example.fooddeliveryapp.repository.FoodRepository;
 import com.google.firebase.auth.FirebaseUser;
 
 import java.util.ArrayList;

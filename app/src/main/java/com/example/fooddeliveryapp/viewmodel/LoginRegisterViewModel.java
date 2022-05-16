@@ -6,7 +6,7 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.MutableLiveData;
 
-import com.example.fooddeliveryapp.model.AppRepository;
+import com.example.fooddeliveryapp.repository.AppRepository;
 import com.google.firebase.auth.FirebaseUser;
 
 public class LoginRegisterViewModel extends AndroidViewModel {

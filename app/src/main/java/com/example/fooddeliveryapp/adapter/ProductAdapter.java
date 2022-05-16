@@ -18,8 +18,7 @@ import java.util.List;
 
 public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHolder> {
 
-    List<Food> foods;
-    int count;
+    private List<Food> foods;
 
     public ProductAdapter(List<Food> foods){
         this.foods = foods;
@@ -36,7 +35,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
     @Override
     public void onBindViewHolder(@NonNull ProductAdapter.ViewHolder holder, int position) {
         holder.foodItem.setText(foods.get(position).getName());
-        holder.price.setText(String.valueOf(foods.get(position).getPrice()));
+        holder.price.setText(String.valueOf(foods.get(position).getPrice() + "dkk"));
         holder.amount.setText(String.valueOf(foods.get(position).getAmount()));
         Glide.with(holder.itemView).load(foods.get(position).getImage()).into(holder.foodImage);
     }

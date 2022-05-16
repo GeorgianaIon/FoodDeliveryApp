@@ -20,7 +20,7 @@ import java.util.List;
 
 public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.ViewHolder> {
 
-    List<Food> foods;
+    private List<Food> foods;
 
 
     public FoodAdapter(){
@@ -42,7 +42,7 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.ViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull FoodAdapter.ViewHolder holder, int position) {
         holder.foodItem.setText(foods.get(position).getName());
-        holder.price.setText(String.valueOf(foods.get(position).getPrice()));
+        holder.price.setText(String.valueOf(foods.get(position).getPrice() + "dkk"));
         holder.amount.setText(String.valueOf(foods.get(position).getAmount()));
         Glide.with(holder.itemView).load(foods.get(position).getImage()).into(holder.foodImage);
     }

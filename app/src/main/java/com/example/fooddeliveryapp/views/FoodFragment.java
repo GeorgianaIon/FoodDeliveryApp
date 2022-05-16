@@ -76,10 +76,7 @@ public class FoodFragment extends Fragment {
         FoodAdapter adapter = new FoodAdapter();
         recyclerView.setAdapter(adapter);
 
-        viewModel.getFood().observe(getViewLifecycleOwner(), foods1 -> {
-            adapter.setItem(foods1);
-
-        });
+        viewModel.getFood().observe(getViewLifecycleOwner(), adapter::setItem);
 
         logOutButton.setOnClickListener(view1 -> viewModel.logOut());
 
