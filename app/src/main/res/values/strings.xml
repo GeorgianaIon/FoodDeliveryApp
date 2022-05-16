@@ -6,4 +6,7 @@
     <string name="password">Password</string>
     <string name="enjoy">Enjoy!</string>
     <string name="phone_number">Phone Number</string>
+    <string name="add_your_contact_details">Add your contact details</string>
+    <string name="thank_you_for_your_order">Thank you for your order</string>
+    <string name="your_order_will_be_deliverd_in_20_minutes">Your order will be delivered in 20 minutes!</string>
 </resources>

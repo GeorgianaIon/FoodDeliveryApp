@@ -34,5 +34,13 @@
     <fragment
         android:id="@+id/addressFragment"
         android:name="com.example.fooddeliveryapp.views.AddressFragment"
-        android:label="AddressFragment" />
+        android:label="AddressFragment" >
+        <action
+            android:id="@+id/action_addressFragment_to_thankYouFragment"
+            app:destination="@id/thankYouFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/thankYouFragment"
+        android:name="com.example.fooddeliveryapp.views.ThankYouFragment"
+        android:label="ThankYouFragment" />
 </navigation>

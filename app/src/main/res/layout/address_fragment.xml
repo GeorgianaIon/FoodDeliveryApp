@@ -12,7 +12,7 @@
         android:layout_gravity="center"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Add your contact details"
+        android:text="@string/add_your_contact_details"
         android:textColor="@color/purple_700"
         android:textSize="20dp"
         android:textStyle="bold" />

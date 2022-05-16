@@ -10,6 +10,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 
 import com.example.fooddeliveryapp.R;
 
@@ -24,11 +25,9 @@ public class AddressFragment extends Fragment {
         View view = inflater.inflate(R.layout.address_fragment,  container, false);
 
         order = view.findViewById(R.id.order);
-        order.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(getActivity(), "Order placed successfully", Toast.LENGTH_SHORT).show();
-            }
+        order.setOnClickListener(view1 -> {
+            Navigation.findNavController(getView()).navigate(R.id.action_addressFragment_to_thankYouFragment);
+            Toast.makeText(getActivity(), "Order placed successfully", Toast.LENGTH_SHORT).show();
         });
 
         return view;
